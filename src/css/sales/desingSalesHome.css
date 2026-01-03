@@ -1,0 +1,107 @@
+#tituloSalesHome{font-size: 21px; font-weight: 600; margin-top: -10px; color: #0d0d0d;}
+.saleSection{margin: 1.5%;   }
+.salesCards {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 10px;
+}
+.saleCads1 {    border: 1.5px solid #8f5bd273;
+    margin-top: 10px;
+    background-color: #f0eefd88;
+    border-radius: 12px;
+    padding: 15px 15px;
+    width: 219px;
+    margin-bottom: 20px;
+}
+.saleCads1 h5 {
+    font-size: 1rem;
+    font-weight: bolder 100;
+    margin: 0;
+}
+.contetCardSale {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.iconsSale {
+    background-color: #8671c0;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconsSale-title {
+    display: flex;
+    align-items: center;
+    gap: px;
+}
+.saleCads1 p {
+    margin: 0;
+    margin-left: 39px;
+    font-size: 0.9rem;
+    color: #434343;
+}
+.mensajeSale{color: #434343; margin-bottom: 10px; font-size: 14.5px;}
+
+/* ventas por libro .........................................................*/
+.flexSaleContainer2{display: flex; flex-direction: row; margin-top: 30px; }
+.table-container {
+    width: fit-content;
+    margin: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    min-width: 300px;
+    width: 100%;
+  }
+  
+  thead {
+    background-color: #f5f7fa;
+    font-weight: bold;
+  }
+  
+  th, td {
+    padding: 12px 20px;
+    text-align: left;
+    color: #333;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  tbody tr:hover {
+    background-color: #f0f4f8;
+  }
+  .dividerSale{width: 1px; height: 400px; background: #7b7b7b; } 
+  .containerCuenta{background: #e5e5e582; padding: 20px; border-radius: 15px;margin-top: 10px; }
+  .containerCuenta p{font-size: 15px; }
+
+  .containerCuentaSale{margin-left: 50px; }
+  .buttonMercadopago{
+    background-color: #8671c0; color: white; font-weight: 600; font-size: 15px;
+    width: 380px;
+    border-radius: 7px; text-align: center;
+    padding: 11px;
+    border: none;
+    margin-top: 18px; 
+       transition: 
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  }
+  .buttonMercadopago:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(89, 88, 96, 0.5);
+}

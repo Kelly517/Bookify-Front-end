@@ -1,0 +1,133 @@
+.conte-readBook{margin-left: 3%; }
+.options-read{display: flex; flex-direction: row; gap: 15px;}
+
+.Writing-sheet{
+  margin-top: 1.5%;  
+  border: 1px solid #e8e8e8; 
+  max-width: 1300px; 
+  min-height: 650px; 
+  padding: 23px 50px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  white-space: pre-wrap;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+
+  .Writing-sheet p {
+    text-indent: 2em;
+    text-align: justify;
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  
+  .Writing-sheet h1, .Writing-sheet h2, .Writing-sheet h3 {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    margin: 40px 0 20px;
+    color: #333;
+  }
+  
+  .Writing-sheet blockquote {
+    border-left: 4px solid #aaa;
+    padding-left: 16px;
+    color: #666;
+    font-style: italic;
+    margin: 24px 0;
+  }
+
+.Writing-sheet p:empty {
+  display: none;
+}
+
+.arrow-read{
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background-color: #efefef; /* circulito gris clarito */
+    border-radius: 50%; /* redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 29px; 
+    color: #333; /* color de la flecha */
+    cursor: pointer;
+    transition: all 0.3s ease;}
+.arrow-read:hover { background-color: #dfd5f2; color: #5b2e92;}
+
+.options-read2 {
+    background-color: rgb(245, 243, 255);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-family: sans-serif;
+  }
+  
+  /* Estilo para el bloque del select de color */
+  .color-select {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-right: 1px solid #ddd;
+    padding-right: 12px;
+  }
+  
+  /* Select sin bordes duros */
+  .color-select select {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Título del capítulo */
+  .chapter-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    font-size: 15px;
+    border-right: 1px solid #ddd;
+    padding-right: 12px;
+  }
+  
+  /* Botón pantalla completa */
+  .fullscreen-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  
+  /* Fondo blanco, texto negro */
+  .Writing-sheet.white {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+  
+  /* Fondo negro, texto blanco */
+  .Writing-sheet.black {
+    background-color: rgb(16, 0, 50);
+    color: white;
+  }
+  
+  /* Fondo gris oscuro, texto blanco */
+  .Writing-sheet.gray {
+    background-color:rgba(217, 217, 217, 1);
+    color: rgb(16, 16, 16);
+  }
+ 

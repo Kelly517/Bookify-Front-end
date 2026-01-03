@@ -1,0 +1,85 @@
+* {  margin: 0; padding: 0; box-sizing: border-box;}
+body { font-family:'Inter', sans-serif;}
+
+.nav-bar {height: 67px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: rgba(243, 239, 255, 0.39);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e0d6f9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  z-index: 1000;
+}
+
+.logo {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.navbar-logo { font-weight: bold; }
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin-left: -10%;
+  gap: 25px;
+  flex: 2;
+}
+
+.navbar-item {
+  font-size: 16px;
+  color: #111111;
+  cursor: pointer;
+  transition: color 0.2s ease; }
+.navbar-item:hover {  color: #7f52d3;}
+
+.navbar-buttons {  display: flex; gap: 10px; flex: 1;   margin-left: 20%;}
+.navbar-button-register,
+.navbar-button-login {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-button-register { background-color: #e6dcfe; color: #4d3a96;}
+.navbar-button-register:hover { background-color: #d5c6fc; box-shadow: 0 4px 12px rgba(215, 182, 255, 0.5);}
+.navbar-button-login {  background-color: #000;  color: #fff;}
+.navbar-button-login:hover {  background-color: #262626;}
+
+
+/* --- Ajuste para pantallas pequeñas --- */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;   /* Ocultamos el menú en móvil */
+  }
+
+  .nav-bar {
+    justify-content: space-between; /* Logo a la izquierda, botones a la derecha */
+    padding: 10px 15px;
+  }
+
+  .logo {
+    margin: 0; 
+    flex: unset;  /* No fuerza espacio extra */
+  }
+
+  .navbar-buttons {
+    margin: 0;
+    flex: unset;
+    gap: 8px;  /* Un poco más pequeño para móviles */
+  }
+
+  .navbar-button-register,
+  .navbar-button-login {
+    padding: 8px 14px;  /* Botones más compactos */
+    font-size: 14px;
+  }
+}

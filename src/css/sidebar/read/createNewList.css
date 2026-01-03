@@ -1,0 +1,115 @@
+.booklist-modal .booklist-form__title {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  /* 🧩 Grupo de campo (label + input o select) */
+  .booklist-modal .booklist-form__group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  
+  /* 🏷️ Etiquetas */
+  .booklist-modal .booklist-form__label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  /* 🖋️ Input */
+  .booklist-modal .booklist-form__input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  /* 🔽 Select */
+  .booklist-modal .booklist-form__select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #f8f6fd;
+    font-size: 14px;
+    font-weight: 500;
+    appearance: none;
+    cursor: pointer;
+  }
+  
+  /* 🎯 Botones */
+  .booklist-modal .booklist-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  /* 🚫 Botón Cancelar */
+  .booklist-modal .booklist-form__button--cancel {
+    padding: 10px 18px;
+    background-color: #e9e5ff;
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .booklist-modal .booklist-form__button--cancel:hover {
+    background-color: #d6cfff;
+  }
+  
+  /* ✅ Botón Crear */
+  .booklist-modal .booklist-form__button--create {
+    padding: 10px 18px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .booklist-modal .booklist-form__button--create:hover {
+    background-color: #222;
+  }
+
+  
+
+  .booklist-modal .modal-content {
+    outline: 2px dashed red !important;
+  }
+  
+  /* 📝 Formulario en columna */
+  .booklist-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .booklist-modal .modal-content {
+    width: 490px !important;
+    max-width: 100%;
+    min-height: 355px;
+    border-radius: 16px;
+    background-color: white;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    outline: 2px dashed red !important; /* Para pruebas */
+  }
+  

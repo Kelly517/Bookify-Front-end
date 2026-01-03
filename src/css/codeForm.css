@@ -1,0 +1,114 @@
+
+.verification-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(144, 144, 144, 0.627);
+    text-align: center;
+    position: relative; margin-top: 40px;
+  }
+  
+  /* Imagen como fondo decorativo arriba */
+  .verification-image-section {
+    width: 100%;
+    height: 180px;
+    background-image: url('../assets/login/verificator-image.png'); /* ajusta esta ruta según tu estructura */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 29px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .verification-subtext,
+  .verification-subtext-email {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .form1 {
+    margin-top: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  
+  .verification-containter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .verification-containter label {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .verification-code {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+    width: 190px;
+    border: 2px solid #6c6c6c;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .verification-code:focus {
+    outline: none;
+    border-color: #8b66ff;
+  }
+  
+  button[type="submit"] {
+    padding: 0.6rem 1.5rem;
+    background-color: #8b66ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #6d4ccf;
+  }
+  
+  .verification-help {
+    margin-top: 1.5rem;
+    font-size: 15px;
+    color: #555;
+  }
+  
+  .resend-button {
+    background: none;
+    border: none;
+    color: #8b66ff;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 0.3rem;
+  }
+  
+  .resend-button:hover {
+    color: #6d4ccf;
+  }
+  
+  .code-expiry {
+    margin-top: 0.8rem;
+    color: #999;
+    font-size: 15px;
+  }
+  

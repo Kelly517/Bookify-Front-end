@@ -1,0 +1,143 @@
+.footer-container {
+    background: linear-gradient(to top, rgba(33, 33, 45, 1), rgba(47, 47, 65, 1));
+    color: #dcdcdc;
+    padding: 40px 30px 20px;
+    font-family: 'Inter', sans-serif;
+    margin-top: 5%;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-content > div {
+    flex: 1 1 200px;
+  }
+  
+  .slogan h1 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 8px;
+  }
+  
+  .slogan p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .icons-social {
+    display: flex;
+    gap: 12px;
+    font-size: 22px;
+  }
+  
+  .icons-social svg {
+    border: 1px solid #999;
+    border-radius: 50%;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .icons-social svg:hover {
+    transform: scale(1.1);
+    color: #867bff;
+    border-color: #867bff;
+  }
+  
+  .links h4,
+  .policies h4,
+  .follow-us h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+  }
+  
+  .links p,
+  .policies p,
+  .follow-us p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  
+  .footer-divider {
+    border: none;
+    height: 1px;
+    background-color: #3c3c4d;
+    margin: 40px 0 20px;
+  }
+  
+  .cpyright-message {
+    text-align: center;
+    font-size: 13px;
+    color: #bbb;
+  }
+  /* ====== Footer para dispositivos pequeños ====== */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 20px 15px 10px;   /* menos espacio */
+    text-align: center;        /* centrar todo */
+  }
+
+  .footer-content {
+    flex-direction: column;    /* apilar bloques */
+    align-items: center;       /* centrar los divs */
+    gap: 20px;                 /* menos separación */
+  }
+
+  .footer-content > div {
+    flex: unset;               /* quitar el flex automático */
+    width: 100%;               /* que ocupen todo el ancho */
+    max-width: 350px;          /* pero con límite para que no se estiren demasiado */
+  }
+
+  .slogan h1 {
+    font-size: 20px;
+  }
+
+  .slogan p {
+    font-size: 13px;
+  }
+
+  .icons-social {
+    justify-content: center;   /* centrar iconos sociales */
+    gap: 10px;
+  }
+
+  .icons-social svg {
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    font-size: 18px;
+  }
+
+  .links h4,
+  .policies h4,
+  .follow-us h4 {
+    font-size: 15px;
+  }
+
+  .links p,
+  .policies p,
+  .follow-us p {
+    font-size: 13px;
+  }
+
+  .footer-divider {
+    margin: 20px 0 10px;
+  }
+
+  .cpyright-message {
+    font-size: 12px;
+  }
+}

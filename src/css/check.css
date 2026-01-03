@@ -1,0 +1,142 @@
+.checkout-cart-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem; margin-top: -1%; margin-left: -1% !important;
+  }
+  
+  .checkout-cart-section-left {
+    flex: 1;
+    margin-right: 2rem; margin-left: 1.4%;
+  }
+  
+  .checkout-cart-section-left h2 {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+  }
+  
+  .checkout-cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.115);
+  }
+  
+  .checkout-cart-table th,
+  .checkout-cart-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .checkout-cart-table-row:last-child td {
+    border-bottom: none;
+  }
+  
+  .checkout-cart-book-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .checkout-cart-book-cover {
+    width: 65px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .checkout-cart-book-title {
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .checkout-cart-book-author {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 4px;
+  }
+  
+  .checkout-cart-book-format {
+    font-weight: 600;
+  }
+  
+  .checkout-cart-book-price {
+    font-weight: 600;
+    color: #f57c00;
+  }
+  
+  .checkout-summary-section-right {
+    width: 380px; 
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.115);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .checkout-summary-section-right h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-summary-book-title,
+  .checkout-summary-book-price {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .checkout-summary-total-price {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin: 1rem 0;
+    border-top: 1px solid #ddd;
+    padding-top: 0.8rem;
+  }
+  
+  .checkout-summary-pay-button {
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  
+  .checkout-summary-pay-button:hover {
+    background-color: #333;
+  }
+  
+  .checkout-summary-note {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .arrow-read3{
+    z-index: 10; 
+    width: 40px; 
+    height: 40px;
+    background-color: #efefef; /* circulito gris clarito */
+    border-radius: 50%; /* redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 29px; 
+    color: #333; /* color de la flecha */
+    cursor: pointer;
+    transition: all 0.3s ease;}
+.arrow-read3:hover { background-color: #dfd5f2; color: #5b2e92;}
+
+  

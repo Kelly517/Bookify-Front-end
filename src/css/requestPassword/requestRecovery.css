@@ -1,0 +1,212 @@
+.containerSendEmail{
+    display: flex;  min-height: 100vh;
+
+}
+.containerLeft {
+    flex: 0.3;
+    background: 
+    url('../../assets/login/logo-login.png') no-repeat center center,
+    linear-gradient(to top, #f0eaff51, #ffffff);
+    justify-content: center;
+    align-items: center;
+  }
+/* --- Right side layout to match the mockup --- */
+.containerRight{
+    flex: 0.7;
+    background: linear-gradient(to left, #f0eaffa6, #ffffff);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;            /* alinea a la izquierda como en el diseño */
+    justify-content: center;
+    padding: 3rem 2rem 2rem 4rem;       /* espacio para que el título quede “libre” */
+    gap: 0.5rem; margin-left: 50px;
+  }
+  
+  /* Header + link */
+  .rr-title{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 .25rem 0;
+    color: #111;
+  }
+  .rr-login{
+    margin: 0 0 1.25rem 0;
+    color: #6b6b6b;
+    font-size: .95rem;
+  }
+  .rr-link{
+    color: #6b6b6b;
+    text-decoration: underline;
+  }
+  .rr-link:hover{ color:#111; }
+  
+  /* Card */
+  .rr-card{
+    width: 100%;
+    max-width: 520px;                   /* tamaño similar al mockup */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(17, 17, 17, 0.08);
+    padding: 1.5rem;
+  }
+  
+  .rr-subtitle{
+    font-size: .95rem;
+    font-weight: 500;
+    color: #222;
+    margin: 0 0 1rem 0;
+    line-height: 1.35;
+  }
+  
+  /* Form */
+  .rr-form{ display:flex; flex-direction:column; gap:.6rem; }
+  
+  .rr-label{
+    font-size: .9rem;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin: .25rem 0 .1rem 0;
+  }
+  
+  .rr-input{
+    width: 100%;
+    height: 44px;
+    border: 1px solid #e5e5e7;
+    border-radius: 8px;
+    padding: 0 .9rem;
+    font-size: .95rem;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .rr-input:focus{
+    border-color: #2c0465;
+    box-shadow: 0 0 0 3px rgba(236, 223, 255, 0.316);
+  }
+  
+ 
+  
+  /* Responsive touch */
+  @media (max-width: 900px){
+    .containerRight{ align-items: center; padding: 2rem 1.25rem; }
+    .rr-title, .rr-login{ align-self: center; text-align: center; }
+  }
+  /* ====== MOBILE VIEW (<= 768px) ====== */
+@media (max-width: 768px) {
+  .containerSendEmail {
+    flex-direction: column;
+    min-height: 100dvh;
+    background: #fff;
+  }
+
+  /* Logo arriba como banner */
+  .containerLeft {
+    display: block;
+    width: 100%;
+    height: 140px;
+    background:
+      url('../../assets/login/logo-login.png') no-repeat center center,
+      linear-gradient(to top, #f0eaff51, #ffffff);
+    background-size: 120px auto, cover;
+    border-bottom: 1px solid #eee;
+    flex: none;
+  }
+
+  /* Contenido debajo del logo */
+  .containerRight {
+    flex: none;
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;         /* centramos en móvil */
+    justify-content: flex-start;
+    padding: 24px 16px;
+    margin-left: 0;              /* anulamos margin-left desktop */
+    background: #fff;
+    min-height: calc(100dvh - 140px);
+  }
+
+  .rr-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .rr-login {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .rr-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px 16px;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,.08);
+    background: #fff;
+  }
+
+  .rr-subtitle {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .rr-label { font-size: 0.9rem; margin-bottom: 6px; }
+  .rr-input {
+    font-size: 16px;          /* evita zoom iOS */
+    min-height: 46px;
+    padding: 11px 12px;
+    border-radius: 10px;
+  }
+
+  .rr-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+}
+
+/* ====== EXTRA SMALL (<= 400px) ====== */
+@media (max-width: 400px) {
+  .containerLeft { height: 120px; background-size: 100px auto, cover; }
+  .rr-title { font-size: 1.35rem; }
+  .rr-card { padding: 16px 12px; border-radius: 12px; }
+  .rr-input { min-height: 44px; padding: 10px 11px; }
+  .rr-btn { min-height: 46px; }
+}
+/* Botón sólido de un solo color */
+.rr-btn {
+  margin-top: .4rem;
+  height: 44px;
+  width: 100%;                 /* full width en mobile */
+  border: none;
+  border-radius: 8px;
+  background-color: #6b46c1;    /* <--- elige tu color base */
+  color: #fff;
+  font-weight: 600;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.02s ease;
+}
+
+/* Hover: apenas un poco más oscuro */
+.rr-btn:hover {
+  background-color: #553c9a;    /* tono más oscuro */
+}
+
+/* Active: efecto “presionado” */
+.rr-btn:active {
+  transform: translateY(1px);
+}
+
+/* Disabled: mismo color pero más opaco */
+.rr-btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}

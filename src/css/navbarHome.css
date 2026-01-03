@@ -1,0 +1,155 @@
+/* Estilos principales de la barra superior */
+.navbar {
+  display: flex;                     /* distribuye elementos en fila */
+  justify-content: space-between;    /* separa buscador a la izquierda e íconos a la derecha */
+  align-items: center;               /* centra verticalmente */
+  padding: 11px 10px;                /* espacio interno */
+  background-color: rgba(239, 241, 255, 0.477); /* fondo claro con transparencia */
+}
+
+/* Contenedor del buscador */
+.barra-busqueda {
+  flex: 1;                           /* ocupa todo el espacio posible */
+  max-width: 500px;                  /* no crece más de 500px */
+  margin-left: 80px;                 /* deja espacio desde la izquierda */
+}
+
+/* Contenedor para poner la lupa dentro del input */
+.contenedor-input-lupa {
+  position: relative;                 /* para que la lupa quede posicionada dentro */
+}
+
+/* Icono de la lupa dentro del input */
+.icono-lupa {
+  position: absolute;                 /* se posiciona dentro del input */
+  left: 10px;                         /* separado 10px de la izquierda */
+  top: 50%;                           /* centrado verticalmente */
+  transform: translateY(-50%);        /* ajuste para el centrado */
+  color: #909090;                     /* color gris */
+}
+
+/* Input del buscador */
+.input-busqueda {
+  width: 100%;                        /* ocupa todo el ancho posible */
+  padding: 10px 10px 10px 35px;       /* padding con espacio a la izquierda para la lupa */
+  border: 1px solid rgba(217, 216, 251, 0.64); /* borde suave */
+  border-radius: 10px;                /* esquinas redondeadas */
+  font-size: 14px;                    /* tamaño de letra */
+  outline: none;                      /* quita el borde azul al hacer foco */
+}
+
+/* Contenedor de los íconos y usuario a la derecha */
+.iconos-navbar {
+  display: flex;                      /* fila */
+  align-items: center;                /* centrados verticalmente */
+  gap: 15px;                          /* espacio entre íconos */
+  position: relative;                 /* para posicionar el dropdown */
+  font-size: 20px;                    /* tamaño de íconos */
+}
+
+/* Línea gris vertical de separación */
+.separador-vertical {
+  width: 1px;
+  height: 30px;
+  background-color: #bebebe;          /* gris */
+  margin: 0 15px;                     /* separación a los lados */
+}
+
+/* Bloque clickeable del usuario (avatar + nombre + rol) */
+.user-navbar {
+  display: flex;
+  align-items: center;
+  cursor: pointer;                    /* cambia el cursor a mano */
+  gap: 9px;                           /* espacio entre avatar y texto */
+  margin-right: 90px;                 /* empuja hacia la derecha */
+}
+
+/* Imagen del avatar pequeño en la navbar */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;                 /* lo hace circular */
+  object-fit: cover;                  /* recorta imagen para que no se deforme */
+}
+
+/* Contenedor del nombre y rol del usuario */
+.nombre-usuario {
+  display: flex;
+  flex-direction: column;             /* nombre arriba y rol abajo */
+  font-size: 10px;
+}
+
+/* Nombre de usuario */
+.name {
+  font-size: 17px;
+}
+
+/* Rol del usuario */
+.rol {
+  display: block;
+  color: gray;
+  font-size: 13px;
+}
+
+/* Menú desplegable flotante */
+.dropdown-menu {
+  position: absolute;                 /* se coloca sobre el contenido */
+  top: 60px;                          /* aparece debajo del avatar */
+  right: 20px;                        /* pegado al borde derecho */
+  background-color: #fff;             /* fondo blanco */
+  border-radius: 12px;                /* esquinas redondeadas */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* sombra flotante */
+  padding: 10px;                      /* espacio interno */
+  width: 220px;                       /* ancho fijo del menú */
+  z-index: 1000;                      /* encima de todo */
+}
+
+/* Parte superior del dropdown: avatar grande y nombre */
+.dropdown-user-info {
+  display: flex;
+  flex-direction: column;             /* elementos en columna */
+  align-items: center;                /* centrados */
+  border-bottom: 1px solid #e0e0e0;   /* línea divisoria abajo */
+  background: rgb(235, 232, 255);     /* fondo lilita */
+  border-radius: 10px;
+  padding: 12px;
+}
+
+/* Avatar dentro del menú */
+.dropdown-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;                 /* circular */
+  object-fit: cover;                  /* mantiene proporción */
+  border: 2px solid rgb(209, 199, 255); /* borde moradito */
+}
+
+/* Nombre completo dentro del menú */
+.dropdown-name {
+  font-size: 15px;
+  font-weight: 600;                   /* negrita */
+  color: #272727;                     /* gris oscuro */
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Botones del menú desplegable */
+.dropdown-menu button {
+  margin-top: 5px;                    /* espacio entre botones */
+  display: flex;                      /* ícono + texto en fila */
+  align-items: center;
+  gap: 10px;                          /* espacio entre ícono y texto */
+  background: none;                   /* sin fondo por defecto */
+  border: none;                       /* sin borde */
+  padding: 10px 8px;
+  width: 100%;                        /* ocupan todo el ancho del menú */
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background 0.2s ease-in-out; /* animación suave */
+}
+
+/* Efecto hover en botones */
+.dropdown-menu button:hover {
+  background-color: #f6f3ff;          /* fondo lilita claro al pasar el mouse */
+}

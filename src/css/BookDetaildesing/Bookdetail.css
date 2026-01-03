@@ -1,0 +1,360 @@
+.contenedor-book-detail {
+  padding: 20px;
+  width: 82%;
+  max-height: 20px;
+  display: flex;
+  gap: 50px;
+}
+
+.list-capitulos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.capitulo-item {
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  width: 450px;
+  font-size: 16px;
+  color: #333;
+  box-shadow: 0 1px 2px #8f5bd273;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.book-detail-background {
+  background-image: url('../../assets/background-book-detail/fondo-book-detail.png');
+  background-size: cover;
+  margin-top: -1.1% !important;
+  margin-left: -0.4% !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 670px;
+  /* aquí defines el alto que tú quieras */
+  position: relative;
+  overflow: hidden;
+}
+
+.portada-book-detail {
+  width: 150px;
+  height: 100%;
+  min-height: 200px;
+  margin-left: 6%;
+  border-radius: 10px;
+  box-shadow: -1px 6px 14px rgba(0, 0, 0, 0.658);
+  transform: translateY(16px);
+  position: relative;
+  /* aseguras que respete el z-index */
+  z-index: 5;
+  /* MÁS alto que los contenedores */
+}
+
+.contenedor-book-detail {
+  background: rgba(245, 241, 250, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #e8e8e8;
+  border-bottom: 0px;
+  /* para que no haya borde abajo */
+  padding: 30px;
+  margin-left: 7%;
+  margin-top: 1%;
+  width: 82%;
+  max-height: 250px;
+  display: flex;
+  gap: 50px;
+  position: relative;
+  z-index: 2;
+
+  /* solo borde redondeado arriba */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.book-detalle2 {
+  background: rgba(254, 253, 255, 0.712);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  margin-left: 7%;
+  border: 1px solid #e8e8e8;
+  width: 82%;
+  display: flex;
+  gap: 50px;
+  position: relative;
+  z-index: 1;
+  min-height: 350px; /* arranca en 350px, pero crece si hay más texto */
+  height: auto; 
+  /* solo borde redondeado abajo */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.contenido {
+  transform: translateY(15px);
+}
+
+.titulo {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0 0 5px 0;
+}
+
+.autor-categoria {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.autor {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.categoria {
+  background-color: rgb(245, 230, 221);
+  color: rgb(172, 94, 34);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+
+.descripcion {
+  color: #333;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.precio {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.valor-precio {
+  color: #e26b00;
+}
+
+
+.detalle-descripcion {
+  width: 50%;
+  margin-top: 5px;
+}
+
+.acciones {
+  margin-left: 270px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.leer-ahora {
+  position: relative;
+  background-color: #e3d9f6;
+  color: #333;
+  font-size: 16px;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  overflow: hidden;
+  /* para que el efecto no se salga */
+  z-index: 1;
+}
+
+.leer-ahora::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center,
+      #ffdcfa, #fbd9ff, #b2d5ff, #dccdfb, #deffda);
+  /* degradado tipo imagen */
+  filter: blur(25px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.leer-ahora:hover::before {
+  opacity: 0.7;
+  /* al pasar el mouse aparece el glow */
+}
+
+.leer-ahora:hover {
+  transform: scale(1.005);
+
+}
+
+.des {
+  margin-left: 40px;
+}
+
+.leer-ahora:hover {
+  background-color: #d1c2f0;
+}
+
+.icono {
+  background-color: rgba(221, 221, 221, 0.5);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icono:hover {
+  background-color: #eee;
+}
+
+.iconolove {
+  margin-left: 13px;
+  background-color: rgba(221, 221, 221, 0.5);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo base para los íconos (para que tengan el mismo tamaño) */
+.iconolove svg {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+/* Ícono cuando está vacío */
+.heart-empty {
+  fill: rgb(0, 0, 0);
+}
+
+/* Ícono cuando está lleno */
+.heart-fill {
+  fill: rgba(119, 100, 195, 1);
+}
+
+.iconolove:hover svg {
+  transform: translateY(-3px);
+  transition: transform 0.3s ease;
+}
+
+
+
+
+
+.titulo-descripcion {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+
+}
+
+.texto-descripcion {
+  font-size: 15px;
+  max-width: 500px;
+  color: #333;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+
+.container-capitulos {
+  background-color: #f0eefd88;
+
+  padding: 20px;
+  width: 490px;
+  border-radius: 10px;
+  border: 1.5px solid #8f5bd273;
+  /* scroll interno */
+  max-height: clamp(350px, 40vh, 360px);
+  /* ajustable */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* evita “rebotar” al body en móvil */
+  padding-right: 12px;
+  /* para que no tape el contenido el scrollbar */
+}
+
+/* Scrollbar para navegadores basados en WebKit */
+.container-capitulos::-webkit-scrollbar {
+  width: 6px;
+  /* más delgadito */
+}
+
+.container-capitulos::-webkit-scrollbar-track {
+  background: transparent;
+  /* o un color suave */
+  border-radius: 10px;
+}
+
+.container-capitulos::-webkit-scrollbar-thumb {
+  background: #b7a6e8;
+  /* un lila que combine */
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.container-capitulos::-webkit-scrollbar-thumb:hover {
+  background: #9a86d0;
+  /* un tono más oscuro en hover */
+}
+
+/* Scrollbar en Firefox */
+.container-capitulos {
+  scrollbar-width: thin;
+  /* delgadito */
+  scrollbar-color: #b7a6e8 transparent;
+  /* color del thumb y del track */
+}
+
+.flecha {
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  z-index: 10;
+  width: 45px;
+  height: 45px;
+  background-color: #efefef;
+  /* circulito gris clarito */
+  border-radius: 50%;
+  /* redondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+  /* tamaño de la flecha */
+  color: #333;
+  /* color de la flecha */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.flecha:hover {
+  background-color: #d1c2f0;
+  /* circulito cambia de color en hover */
+  color: #5b2e92;
+  /* flecha cambia de color en hover */
+}

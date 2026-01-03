@@ -1,0 +1,41 @@
+  .user-stats-container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 27px; margin-bottom: 35px;
+  }
+  
+  .user-stats-card {
+    background-color: #f6f3ff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 10px;
+    border-radius: 10px;
+    min-width: 200px;
+  }
+  /* #blue{background-color: #e3e3e3;}
+  #blueicon{background-color: #c4e1ff; color: rgb(0, 118, 253); border: 0.5px solid #4b87ff64;} */
+  /* #moneyblue{font-size: 25px;} */
+  .user-stats-icon {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user-stats-label {
+    font-size: 13px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .user-stats-value {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 2px 0 0 0;
+  }
+  

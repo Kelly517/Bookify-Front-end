@@ -1,0 +1,406 @@
+.write-section {
+    margin: 2%;margin-left: 3%;
+}
+
+.write-area {margin-left: 1.5%;
+    background: url('../../assets/gradientWrite.png') no-repeat;
+    background-position: top right; /* la fija en la esquina superior derecha */
+    background-size: auto; /* puedes usar contain o cover si quieres escalar */
+
+}
+
+/* La card con menú abierto salta al frente */
+.book-info.is-open { z-index: 1000; }
+
+/* El menú queda por encima de las cards hermanas */
+.book-modal-book-created { z-index: 9999; }
+
+
+.stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.secondary-text {
+    margin-top: 15px;
+}
+
+.stat-box {
+    margin-top: 10px;
+    background-color: #f6f3ff;
+    border-radius: 11px;
+    padding: 12px 12px;
+    width: 205px;
+    margin-bottom: 14px;
+}
+
+.icon {
+    background-color: black;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.stat-box h5 {
+    font-size: 15px;
+}
+
+.stat-box p {
+    margin: 0;
+    margin-left: 39px;
+    font-size: 0.9rem;
+    color: #434343;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-box span {
+    display: inline-block;
+}
+
+.create-button {
+    align-self: flex-start;
+    background-color: rgba(248, 248, 248, 1);
+    max-width: 270px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 20px;
+    gap: 15px;
+    border-color: 1px rgb(52, 52, 52);
+    margin-top: 40px;
+}
+
+.create-button button {
+    background-color: #1f1f1f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.create-button p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.3;
+}
+
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    width: 650px;
+    max-width: 100%;
+    z-index: 1001;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.recent-books {
+    width: 45%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.write-area {
+    display: flex;
+    flex-direction: row;
+}
+
+.book-card {
+    background-color: rgb(248, 248, 248);
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    height: 390px;
+    overflow-y: auto;
+
+    /* Estilo para el scroll */
+    scrollbar-width: thin;
+    /* Para Firefox */
+    scrollbar-color: hsl(248, 13%, 66%) transparent;
+    /* Para Firefox */
+}
+
+/* Para navegadores basados en WebKit (Chrome, Edge, Safari) */
+.book-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.book-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.book-card::-webkit-scrollbar-thumb {
+    background-color: #10056c;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+
+
+.book-info {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    font-size: 14px;
+    background-color: #ffffff;
+    width: 96%;
+    height: 80px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(231, 231, 231);
+    padding: 15px;
+}
+
+.status-published {
+    background-color: rgba(233, 229, 250, 1);
+    color: rgba(6, 5, 52, 1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    height: 25px;
+    font-size: 13px;
+    margin-top: -1px;
+}
+
+.status-draft {
+    background-color: rgba(222, 245, 228, 1);
+    color: rgba(6, 61, 8, 1);
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    height: 25px;
+    font-size: 13px;
+    margin-top: -1px;
+}
+
+.icon-more {
+    margin-top: -10px;
+    font-size: 30px;
+    color: #1f1f1f;
+    margin-left: auto;
+    font-weight: 600;
+}
+
+.book-modal-book-created {
+    position: absolute;
+    top: 25px;
+    right: -20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.book-modal-button {
+    background-color: #f2f2f2d4;
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 19px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.book-info {
+    position: relative;
+}
+/* ====== Tablet y abajo ====== */
+@media (max-width: 1024px) {
+    .write-area {
+      background: none !important;       /* quita imagen decorativa en mobile */
+    }
+  }
+  
+  /* ====== Móvil (<= 768px) ====== */
+  @media (max-width: 768px) {
+    /* 1) Sección superior */
+    .write-section {
+      margin: 16px !important;
+      width: 270px;
+    }
+  
+    /* Stats en 2 columnas */
+    .stats {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px !important;
+    }
+    .stat-box {
+      width: 250px !important; height: 70px !important;
+      padding: 12px !important;
+    }
+  
+    /* 2) Reordenar write-area: primero Crear, luego Lista */
+    .write-area {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 16px !important;
+      padding: 0 16px !important;
+      margin-left: 0 !important;
+    }
+  
+    /* Crear libro debajo de stats, angosto y centrado */
+    .create-button {
+      order: 1 !important; 
+      width:  220px !important;
+      max-width: 240px !important;   /* más angosto */
+      margin: 0  8px auto !important;
+      padding: 16px !important;
+    }
+    .create-button button {
+      width: 200px !important;
+      font-size: 15px !important;
+      padding: 10px 12px !important;
+      border-radius: 10px !important;
+    }
+    .create-button p {
+      margin-top: 10px !important;
+      font-size: 13px !important;
+    }
+  
+    /* Lista de libros al 100% debajo del botón */
+    .recent-books {
+      order: 2 !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .book-card {
+      height: auto !important;
+      max-height: 55vh !important;
+      overflow-y: auto !important;
+      overflow-x: visible !important;
+      margin-top: 10px !important;
+    }
+  
+    /* Tarjeta de libro compacta */
+    .book-info {
+      gap: 14px !important;
+      padding: 12px !important;
+      margin: 8px 0 !important;
+      min-height: 68px !important;
+    }
+    /* Título con ellipsis */
+    .book-info h3 {
+      margin: 0 !important;
+      font-size: 16px !important;
+      max-width: 70vw !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+  
+    /* Pills más pequeñas */
+    .status-published, .status-draft {
+      height: auto !important;
+      padding: 4px 8px !important;
+      font-size: 12px !important;
+      border-radius: 12px !important;
+      margin-top: 0 !important;
+    }
+  
+    /* Ícono de opciones cómodo al tacto */
+    .icon-more {
+      font-size: 24px !important;
+      margin-top: 0 !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+    }
+  
+    /* Dropdown por encima y bien ubicado */
+    .book-info.is-open { z-index: 1000 !important; }
+    .book-modal-book-created {
+      right: 8px !important;
+      top: 36px !important;
+      z-index: 9999 !important;
+    }
+  }
+  
+  /* ====== Móvil pequeño (<= 480px) ====== */
+  @media (max-width: 480px) {
+    #titulo-read-section { font-size: 1.1rem !important; line-height: 1.2 !important; }
+    .secondary-text { font-size: 0.95rem !important; }
+  
+    /* Si 2 columnas no caben, cae a 1 */
+    .stats { grid-template-columns: 1fr !important; }
+  
+    .book-info h3 { max-width: 62vw !important; }
+    .book-card { max-height: 50vh !important; }
+  }
+  
+  /* Menos movimiento si el usuario lo prefiere */
+  @media (prefers-reduced-motion: reduce) {
+    .modal-content { animation: none !important; }
+  }
+  
+  /* Asegura apilamiento del dropdown en todos los tamaños */
+  .book-info.is-open { z-index: 1000; }
+  .book-modal-book-created { z-index: 9999; }
+  
