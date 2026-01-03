@@ -13,7 +13,7 @@ export async function loginLegacy(email, password) {
     return response.data; // token (JWT)
   } catch (error) {
     if (error.response) {
-      throw new Error(error.response.data || "Correo o contraseña inválidos");
+      throw new Error("Correo o contraseña inválidos");
     }
     throw new Error("Error de conexión con el servidor");
   }
