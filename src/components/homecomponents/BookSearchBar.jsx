@@ -1,56 +1,47 @@
 import React, { useContext, useRef } from "react";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Search } from "../../icons/Icons";
 import { BookContext } from "../../assets/context/BookContext";
+import { useBookSearch } from "../../features/home/hooks/useBookSearch";
 
 const BookSearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const { setBooks } = useContext(BookContext);
-  const inputRef = useRef(null); // 👈 para enfocar al tocar la lupa/contenedor
+  const inputRef = useRef(null);
 
-  const handleSearch = async (e) => {
+  const { searchTerm, setSearchTerm, isSearching, error, runSearch } =
+    useBookSearch({ setBooks, pageSize: 5 });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (searchTerm.trim() === "") {
-      fetchAllBooks();
-      return;
-    }
-    try {
-      const { data } = await axios.get(
-        `http://localhost:8080/api/bookify/find/book`,
-        { params: { query: searchTerm } }
-      );
-      setBooks(data.content);
-    } catch (error) { console.error(error); }
+    await runSearch(searchTerm);
   };
-
-  const fetchAllBooks = async () => {
-    try {
-      const { data } = await axios.get(`http://localhost:8080/api/bookify/books`, {
-        params: { page: 0, size: 5, sort: "title,asc" },
-      });
-      setBooks(data.content);
-    } catch (error) { console.error("Error recargando libros:", error); }
-  };
-
-  useEffect(() => { if (searchTerm.trim() === "") fetchAllBooks(); }, [searchTerm]);
 
   return (
-    <form onSubmit={handleSearch} className="barra-busqueda">
+    <form onSubmit={handleSubmit} className="barra-busqueda">
       <div
         className="contenedor-input-lupa"
-        onClick={() => inputRef.current?.focus()} /* 👈 toca la lupa y abre */
+        onClick={() => inputRef.current?.focus()}
       >
         <Search className="icono-lupa" />
+
         <input
-          ref={inputRef}                 /* 👈 para focus() */
+          ref={inputRef}
           className="input-busqueda"
           type="search"
           placeholder="Buscar por título o el autor"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+
+        {/* Opcional: indicador simple de carga (sin “cosas pro” todavía) */}
+        {isSearching ? <span style={{ marginLeft: 8 }}>...</span> : null}
       </div>
+
+      {/* Opcional: error simple (luego lo estilizamos pro) */}
+      {error ? (
+        <p style={{ marginTop: 6, fontSize: 12 }}>
+          Hubo un error buscando. Intenta de nuevo.
+        </p>
+      ) : null}
     </form>
   );
 };
