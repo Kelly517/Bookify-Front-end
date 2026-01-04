@@ -41,7 +41,7 @@ const Home = () => {
       />
 
       <div className="containerCategoriesHomeOne">
-        <p className="p-categoriess">Otros libros que te pueden gustar</p>
+        <p className="p-categories">Otros libros que te pueden gustar</p>
 
         <div className="selectCategory">
           <CategorySelect

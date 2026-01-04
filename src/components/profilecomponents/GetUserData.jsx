@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { getUserByEmail } from "../../services/userService";
 
-export function useUserData (email) {
-  const [ user, setUser ] = useState(null);
-  const [ loading, setLoading ] = useState(null);
-  const [ error, setError ] = useState(null);
+export function useUserData(email) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if(!email) return;
+    if (!email) return;
+
     let cancelled = false;
     setLoading(true);
+    setError(null);
 
-    axios.get(
-      `http://localhost:8080/api/bookify/users/${encodeURIComponent(email)}`)
-      .then(res => {
-        if(!cancelled) {
-          setUser(res.data);
-          setError(null);
-        }
+    getUserByEmail(email)
+      .then((data) => {
+        if (!cancelled) setUser(data);
       })
-      .catch(err => {
-        if(!cancelled) setError(err);
+      .catch((err) => {
+        if (!cancelled) setError(err);
       })
       .finally(() => {
-        if(!cancelled) setLoading(false);
+        if (!cancelled) setLoading(false);
       });
-      return () => {
-        cancelled = true;
-      }
+
+    return () => {
+      cancelled = true;
+    };
   }, [email]);
 
   return { user, loading, error };
