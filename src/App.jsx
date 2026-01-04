@@ -1,6 +1,4 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import UsersRegister from "./pages/UsersRegister.jsx";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
 import MyProfile from "./pages/MyProfile.jsx";
@@ -29,6 +27,7 @@ import { BookProvider } from "./assets/context/BookContext.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
 import UpdatePassword from "./pages/UpdatePassword.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 function App() {
   return (
@@ -38,7 +37,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<WelcomePage />} />
-              <Route path="/register" element={<UsersRegister />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/verification-code" element={<CodeVerificator />} />
               <Route path="login" element={<Login />} />
               <Route path="/forgot/password" element={<ForgotPasswordPage />} />
