@@ -12,7 +12,7 @@ const BookHeader = ({ book }) => {
   return (
     <div className="contenedor-book-detail">
       <img
-        src={`http://localhost:8080/api/bookify/view-image/${book.title}/${book.filePathCoverPage}`}
+        src={`http://localhost:8080/api/bookify/view-image/${book.title}/${book.coverPage}`}
         alt="Portada"
         className="portada-book-detail"
       />
@@ -20,7 +20,7 @@ const BookHeader = ({ book }) => {
         <h1 className="titulo">{book.title}</h1>
 
         <div className="autor-categoria">
-          <h3 className="autor">{book.author.userName}</h3>
+          <h3 className="autor">{book.author.username}</h3>
           <span className="categoria">{categoryLabel}</span>
         </div>
 
