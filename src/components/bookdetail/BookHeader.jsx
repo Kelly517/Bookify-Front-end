@@ -8,11 +8,12 @@ import "../../css/BookDetaildesing/Bookdetail.css";
 const BookHeader = ({ book }) => {
   const categoryLabel = categoryOptions.find(cat => cat.value === book.category)?.label || book.category;
   const user = localStorage.getItem("userId");
+  console.log("Books: ", book)
 
   return (
     <div className="contenedor-book-detail">
       <img
-        src={`http://localhost:8080/api/bookify/view-image/${book.title}/${book.coverPage}`}
+        src={`http://localhost:8080/api/bookify/view-image/${book.title}/${book.filePathCoverPage}`}
         alt="Portada"
         className="portada-book-detail"
       />
@@ -20,7 +21,7 @@ const BookHeader = ({ book }) => {
         <h1 className="titulo">{book.title}</h1>
 
         <div className="autor-categoria">
-          <h3 className="autor">{book.author.username}</h3>
+          <h3 className="autor">{book.author.userName}</h3>
           <span className="categoria">{categoryLabel}</span>
         </div>
 

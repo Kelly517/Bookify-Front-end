@@ -5,7 +5,7 @@ import { deleteBookByIdentifierCode, getBooksPage } from "../../../services/auth
 
 export function useWriteHome() {
   const navigate = useNavigate();
-  const { userId } = loadAuthFromStorage();
+  const { email } = loadAuthFromStorage();
 
   const [books, setBooks] = useState([]);
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -21,7 +21,7 @@ export function useWriteHome() {
   const closeDropDown = useCallback(() => setOpenDropdownId(null), []);
 
   const loadAuthorBooks = useCallback(async () => {
-    if (!userId) return;
+    if (!email) return;
 
     setLoading(true);
     setError(null);
@@ -29,14 +29,14 @@ export function useWriteHome() {
     try {
       const data = await getBooksPage({ page: 0, size: 200, sort: "title,asc" });
       const allBooks = data.content ?? [];
-      const filtered = allBooks.filter((b) => b.author?.userId === Number(userId));
+      const filtered = allBooks.filter((b) => b.author?.email === email);
       setBooks(filtered);
     } catch (err) {
       setError(err);
     } finally {
       setLoading(false);
     }
-  }, [userId]);
+  }, [email]);
 
   useEffect(() => {
     loadAuthorBooks();

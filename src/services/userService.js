@@ -6,7 +6,7 @@ export async function getUserByEmail(email) {
 
   try {
     const response = await apiClient.get(path);
-    return response.data; // user
+    return response.data;
   } catch (error) {
     if (error.response) {
       throw new Error(error.response.data || "Error obteniendo el usuario");
