@@ -20,7 +20,6 @@ const BookChapters = ({ book }) => {
     })
   }
 
-  console.log("Book: ", book)
   return (
     <div className='container-capitulos'>
       <h2>Capítulos</h2>
@@ -37,7 +36,7 @@ const BookChapters = ({ book }) => {
                 }
               }}
             >
-              Capítulo {chapter.pageNumber}: {chapter.pageTitle}
+              {chapter.pageTitle}
             </div>
           ))}
         </div>

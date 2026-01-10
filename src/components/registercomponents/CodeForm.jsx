@@ -1,59 +1,72 @@
-/**
- * ----------------------------------------------------------------------------------------------------------------------
- *                        COMPONENTE DE VERIFICACIÓN DE EMAIL. OBLIGATORIA PARA REGISTRAR USUARIOS
- * ----------------------------------------------------------------------------------------------------------------------
- */
-
-//¡ATENCIÓN!: ESTE COMPONENTE SE CONECTA DIRECTO CON LA SIGUIENTE PÁGINA: pages/CodeVerificator.jsx
-
 import React from "react";
-import '../../css/codeForm.css';
+import "../../css/codeForm.css";
 
-/**
- * Esta función recibe un formulario, este formulario tiene un único campo que toma el código y lo compara con el código guardado en redis
- * Si los códigos coinciden, se completa el registro de usuario. Este código solo se envía al email del usuario
- * @param {onSubmit} param0 
- * @returns un estado correcto de verificación. Esto permite registrar al usuario de forma segura, y se verifica que sea un email real
- */
-function VerificationPage({ onSubmit }) {
-
+function CodeForm({
+  email,
+  code,
+  onCodeChange,
+  onSubmit,
+  onResend,
+  isLoading,
+  isResending,
+  errorMessage,
+  infoMessage,
+}) {
   return (
     <div className="verification-wrapper">
-      <div className="verification-image-section">
-      </div>
+      <div className="verification-image-section"></div>
 
       <h1>Verifica tu cuenta</h1>
       <p className="verification-subtext">
-        Confiamos en ti, pero debemos verificar que tú correo sea real.
+        Confiamos en ti, pero debemos verificar que tu correo sea real.
       </p>
+
       <p className="verification-subtext-email">
-        Hemos enviado un código de 6 dígitos tú correo
+        Hemos enviado un código de 6 dígitos a tu correo{email ? `: ${email}` : ""}.
       </p>
 
-      {/*El onSubmit del código es el que se manda hacia la page y permite el registro completo */}
-      <form onSubmit={onSubmit} className="form1">
-
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
+        className="form1"
+      >
         <div className="verification-containter">
-
           <input
             type="text"
             placeholder="Ingrese el código"
             name="code"
             required
-            maxLength={6} //Esta función limita el tamaño del código para impedir enviar código exagerados
+            maxLength={6}
             className="verification-code"
+            value={code}
+            onChange={(e) => onCodeChange(e.target.value)}
           />
-          <button type="submit">Verificar</button>
+
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Verificando..." : "Verificar"}
+          </button>
         </div>
       </form>
 
+      {errorMessage ? <p className="error-message">{errorMessage}</p> : null}
+      {infoMessage ? <p className="info-message">{infoMessage}</p> : null}
+
       <div className="verification-help">
         <p>¿No recibiste el código?</p>
-        <button type="button" className="resend-button">Reenviar código</button>
+        <button
+          type="button"
+          className="resend-button"
+          onClick={onResend}
+          disabled={isResending}
+        >
+          {isResending ? "Reenviando..." : "Reenviar código"}
+        </button>
         <p className="code-expiry">Este código expirará en 10 minutos</p>
       </div>
     </div>
   );
 }
 
-export default VerificationPage;
+export default CodeForm;

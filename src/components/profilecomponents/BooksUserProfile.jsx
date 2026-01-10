@@ -5,11 +5,11 @@ import BookCard from "../homecomponents/BookCard";
 import "../../css/profile/getProfile.css";
 
 const BooksUserProfile = () => {
-  const userId = parseInt(localStorage.getItem("userId"), 10);
+  const email = localStorage.getItem("email");
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    if (!userId) return;
+    if (!email) return;
 
     async function fetchBooks() {
       try {
@@ -18,16 +18,18 @@ const BooksUserProfile = () => {
         );
         const allBooks = bookResponse.data.content;
         const filteredBooks = allBooks.filter(
-          (book) => book.author?.userId === userId
+          (book) => book.author?.email === email
         );
 
+        console.log("All boks: ", allBooks);
+        console.log("Filtered books: ", filteredBooks);
         setBooks(filteredBooks);
       } catch (err) {
         console.log("Error obteniendo los libros", err);
       }
     }
     fetchBooks();
-  }, [userId]);
+  }, [email]);
 
   return (
     <>
