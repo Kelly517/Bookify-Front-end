@@ -1,21 +1,19 @@
-import React from 'react'
-import NavBarProfile from '../components/profilecomponents/NavBarProfile'
-import BooksUserProfile from '../components/profilecomponents/BooksUserProfile'
-import '../css/profile/getProfile.css';
-
+import "../css/profile/getProfile.css";
+import NavBarProfile from "../components/profilecomponents/NavBarProfile";
+import BooksUserProfile from "../components/profilecomponents/BooksUserProfile";
 
 const MyProfile = () => {
   return (
-    <div className='container-all-myprofile'>
+    <div className="container-all-myprofile">
       <div className="container-header-profile">
-      <NavBarProfile /> 
+        <NavBarProfile />
       </div>
+
       <div className="cards-profile-container">
         <BooksUserProfile />
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default MyProfile
+export default MyProfile;
