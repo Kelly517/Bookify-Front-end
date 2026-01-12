@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flechaleft, Flecharight } from "../../icons/Icons";
-import '../../css/homecomponents/bookCardHome.css';
+import "../../css/homecomponents/bookCardHome.css";
 
 const BookCard = ({
   books,
   showPrice = false,
   showDescription = false,
   showRating = false,
-  customClassName = '',
+  customClassName = "",
   showDivider = true,
   booksPerPage = 5,
   showBoton = true,
-  showBotonderecho = true
+  showBotonderecho = true,
 }) => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
@@ -58,8 +58,13 @@ const BookCard = ({
 
               <div className="book-info-horizontal">
                 <h3 className="book-title">{bookData.title}</h3>
-                 <p className="autorBookCardHome" onClick={(e) => handleGoToProfile(e, bookData.author.email)}>  {bookData.author.username}
-                 </p> 
+                <p
+                  className="autorBookCardHome"
+                  onClick={(e) => handleGoToProfile(e, bookData.author.email)}
+                >
+                  {" "}
+                  {bookData.author.username}
+                </p>
                 <div className="book-rating">
                   {showRating && (
                     <div className="book-rating">
@@ -82,10 +87,12 @@ const BookCard = ({
 
                 {showPrice && (
                   <div className="book-price">
-                    {bookData.price === 0 ? (
+                    {bookData.price == null || Number(bookData.price) === 0 ? (
                       <span className="badge-free">Gratis</span>
                     ) : (
-                      <span>${bookData.price.toLocaleString("es-CO")}</span>
+                      <span>
+                        ${Number(bookData.price).toLocaleString("es-CO")}
+                      </span>
                     )}
                   </div>
                 )}

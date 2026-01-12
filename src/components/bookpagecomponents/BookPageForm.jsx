@@ -1,9 +1,8 @@
-// BookPageForm.jsx
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import EditorArea from "./EditorArea";
+import { pageChapterService } from "../../services/pageChapterService";
 
-const BookPageForm = ({ mode = "create", pageData = {}, bookIdentifierCode, bookId }) => {
+const BookPageForm = ({ mode = "create", pageData = {}, bookIdentifierCode }) => {
   const [pageContent, setPageContent] = useState(pageData.pageContent || "");
   const [pageTitle, setPageTitle] = useState(pageData.pageTitle || "");
   const token = localStorage.getItem("authToken");
@@ -13,22 +12,19 @@ const BookPageForm = ({ mode = "create", pageData = {}, bookIdentifierCode, book
     setPageTitle(pageData.pageTitle || "");
   }, [pageData]);
 
-  console.log("Book: ", bookIdentifierCode);
-  console.log("Mode: ", mode);
-
   const handleSave = async () => {
     try {
       if (mode === "create") {
-        await axios.post(
-          `http://localhost:8080/api/bookify/page/${bookIdentifierCode}`,
-          { pageTitle, pageContent, /* bookId */ },
-          { headers: { Authorization: `Bearer ${token}` } }
+        await pageChapterService.createPage(
+          bookIdentifierCode,
+          { pageTitle, pageContent },
+          token
         );
       } else {
-        await axios.put(
-          `http://localhost:8080/api/bookify/page/${pageData.bookPageId}`,
+        await pageChapterService.updatePage(
+          pageData.bookPageId,
           { pageTitle, pageContent },
-          { headers: { Authorization: `Bearer ${token}` } }
+          token
         );
       }
     } catch (error) {
@@ -38,7 +34,11 @@ const BookPageForm = ({ mode = "create", pageData = {}, bookIdentifierCode, book
 
   return (
     <div>
-      <EditorArea content={pageContent} setContent={setPageContent} onSave={handleSave} />
+      <EditorArea
+        content={pageContent}
+        setContent={setPageContent}
+        onSave={handleSave}
+      />
     </div>
   );
 };

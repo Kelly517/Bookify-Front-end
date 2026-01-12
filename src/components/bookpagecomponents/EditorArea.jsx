@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -6,110 +6,139 @@ import TextStyle from "@tiptap/extension-text-style";
 import FontFamily from "@tiptap/extension-font-family";
 import "../../css/editor/editor-area.css";
 
+const HEADING_LEVELS = [
+  { value: "0", label: "Párrafo" },
+  { value: "1", label: "Título 1" },
+  { value: "2", label: "Título 2" },
+  { value: "3", label: "Título 3" },
+];
+
+const FONT_OPTIONS = [
+  "Arial",
+  "Georgia",
+  "Times New Roman",
+  "Verdana",
+  "Tahoma",
+  "Book antiqua",
+];
+
 const EditorArea = ({ content, setContent, onSave }) => {
-  const hasInitialized = useRef(false);
   const editor = useEditor({
     extensions: [StarterKit, Underline, TextStyle, FontFamily],
-    content: content,
+    content,
     onUpdate({ editor }) {
       setContent(editor.getHTML());
     },
   });
 
+  // Sync externo -> editor
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
-      console.log("📄 Contenido recibido:", content);
-      editor.commands.setContent(content);
-    }
+    if (!editor) return;
+    if (content === editor.getHTML()) return;
+
+    editor.commands.setContent(content);
   }, [content, editor]);
+
+  const getHeadingValue = () => {
+    if (!editor) return "0";
+    if (editor.isActive("heading", { level: 1 })) return "1";
+    if (editor.isActive("heading", { level: 2 })) return "2";
+    if (editor.isActive("heading", { level: 3 })) return "3";
+    return "0";
+  };
+
+  const handleHeadingChange = (e) => {
+    if (!editor) return;
+    const level = Number(e.target.value);
+
+    const chain = editor.chain().focus();
+    if (level === 0) chain.setParagraph().run();
+    else chain.toggleHeading({ level }).run();
+  };
+
+  const handleFontChange = (e) => {
+    if (!editor) return;
+    editor.chain().focus().setFontFamily(e.target.value).run();
+  };
+
+  const toggle = (mark) => () => {
+    if (!editor) return;
+    editor.chain().focus()[mark]().run();
+  };
+
+  const isActive = (mark) => (editor ? editor.isActive(mark) : false);
 
   return (
     <div className="editor-container">
-      {/* Barra de botones */}
       <div className="editor-toolbar">
-        {/* Selector de "Título" */}
+        {/* Heading */}
         <select
           className="toolbar-select"
-          onChange={(e) => {
-            const level = parseInt(e.target.value);
-            if (level === 0) {
-              editor.chain().focus().setParagraph().run();
-            } else {
-              editor.chain().focus().toggleHeading({ level }).run();
-            }
-          }}
-          value={
-            editor.isActive("heading", { level: 1 })
-              ? "1"
-              : editor.isActive("heading", { level: 2 })
-                ? "2"
-                : editor.isActive("heading", { level: 3 })
-                  ? "3"
-                  : "0"
-          }
+          onChange={handleHeadingChange}
+          value={getHeadingValue()}
+          disabled={!editor}
         >
-          <option value="0">Párrafo</option>
-          <option value="1">Título 1</option>
-          <option value="2">Título 2</option>
-          <option value="3">Título 3</option>
+          {HEADING_LEVELS.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
         </select>
 
-        {/* Selector de fuente */}
+        {/* Font */}
         <select
           className="toolbar-select"
-          onChange={(e) =>
-            editor.chain().focus().setFontFamily(e.target.value).run()
-          }
+          onChange={handleFontChange}
           defaultValue="Arial"
+          disabled={!editor}
         >
-          <option value="Arial">Arial</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Verdana">Verdana</option>
-          <option value="Tahoma">Tahoma</option>
-          <option value="Book antiqua">Book antiqua</option>
+          {FONT_OPTIONS.map((font) => (
+            <option key={font} value={font}>
+              {font}
+            </option>
+          ))}
         </select>
 
-        {/* Bold */}
+        {/* Marks */}
         <button
           type="button"
-          className={`toolbar-button ${editor.isActive("bold") ? "is-active" : ""
-            }`}
-          onClick={() => editor.chain().focus().toggleBold().run()}
+          className={`toolbar-button ${isActive("bold") ? "is-active" : ""}`}
+          onClick={toggle("toggleBold")}
+          disabled={!editor}
         >
           B
         </button>
 
-        {/* Italic */}
         <button
           type="button"
-          className={`toolbar-button ${editor.isActive("italic") ? "is-active" : ""
-            }`}
-          onClick={() => editor.chain().focus().toggleItalic().run()}
+          className={`toolbar-button ${isActive("italic") ? "is-active" : ""}`}
+          onClick={toggle("toggleItalic")}
+          disabled={!editor}
         >
           I
         </button>
 
-        {/* Underline */}
         <button
           type="button"
-          className={`toolbar-button ${editor.isActive("underline") ? "is-active" : ""
-            }`}
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={`toolbar-button ${isActive("underline") ? "is-active" : ""}`}
+          onClick={toggle("toggleUnderline")}
+          disabled={!editor}
         >
           U
         </button>
 
-        <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
-          <button className="boton-publicar">Publicar ✨</button>
-          <button className="boton-guardar" onClick={onSave}>
+        {/* Actions */}
+        <div className="toolbar-actions">
+          <button type="button" className="boton-publicar">
+            Publicar ✨
+          </button>
+          <button type="button" className="boton-guardar" onClick={onSave}>
             Guardar
           </button>
         </div>
       </div>
 
-      {/* El editor */}
-      <div className="editor-content">
+      <div className="editor-content book-page">
         <EditorContent editor={editor} />
       </div>
     </div>

@@ -1,231 +1,250 @@
+/* =========================
+   CONTENEDOR GENERAL
+========================= */
 .editor-container {
-    margin-left: 60px;
-    width: 970px;
-    height: 700px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+  margin-left: 60px;
+  width: 970px;
+  height: 700px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1500px) {
-    .editor-container {
-        margin-left: 25px;
-        width: 900px;
-        height: 600px;
-    }
+  .editor-container {
+    margin-left: 25px;
+    width: 900px;
+    height: 600px;
+  }
 }
 
 @media (max-width: 1400px) {
-    .editor-container {
-        margin-left: 25px;
-        width: 800px;
-        height: 600px;
-    }
+  .editor-container {
+    margin-left: 25px;
+    width: 800px;
+    height: 600px;
+  }
 }
 
+/* =========================
+   TOOLBAR (STICKY)
+========================= */
 .editor-toolbar {
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    background-color: #faf9fc;
-    border-bottom: 1px solid #ddd;
-    gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+  background-color: #faf9fc;
+  border-bottom: 1px solid #ddd;
 }
 
+/* Selects (unificado, sin duplicados) */
 .toolbar-select {
-    padding: 4px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 14px;
-}
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-.toolbar-button {
-    border: none;
-    background-color: white;
-    padding: 4px 8px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-}
+  padding: 6px 12px;
+  padding-right: 32px;
 
-.toolbar-button:hover {
-    background-color: #f0f0f0;
-}
+  border: 1px solid #dfd1e8;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  font-size: 15px;
+  color: #333333;
 
-.toolbar-button.is-active {
-    background-color: #ded1f7;
-    color: #3f2a8d;
-}
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 
-.editor-content {
-    padding: 16px;
-    min-height: 300px;
-    background-color: white;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.editor-content p {
-    margin: 8px 0;
-}
-
-.editor-content h1,
-.editor-content h2,
-.editor-content h3 {
-    margin: 16px 0 8px;
-}
-
-.boton-publicar {
-    background: linear-gradient(135deg, rgb(137, 116, 218), rgb(124, 92, 221));
-    color: #fff;
-    border: none;
-    padding: 9px 20px;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(119, 100, 195, 0.632);
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.boton-publicar::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg,
-            rgba(255, 255, 255, 0.2),
-            rgba(255, 255, 255, 0));
-    transition: left 0.4s ease;
-    z-index: 0;
-}
-
-.boton-publicar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(119, 100, 195, 0.5);
-}
-
-.boton-publicar:hover::after {
-    left: 100%;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 10px rgba(119, 100, 195, 0.4);
-    }
-
-    50% {
-        box-shadow: 0 0 20px rgba(119, 100, 195, 0.6);
-    }
-}
-
-.boton-guardar {
-    padding: 8px 12px;
-    font-size: 15px;
-    background-color: #9777ef4e;
-    color: #200061;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-
-    /* Le agregamos más propiedades a la transición */
-    transition:
-        background-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.boton-guardar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(119, 100, 195, 0.5);
-}
-
-.editor-content .ProseMirror {
-    min-height: 600px;
-    padding: 30px;
-    outline: none;
-    border: none;
-    font-size: 18px;
-    line-height: 1.8;
-    background-color: white;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
-}
-
-.editor-content .ProseMirror p {
-    margin: 12px 0;
-}
-
-.editor-content .ProseMirror h1,
-.editor-content .ProseMirror h2,
-.editor-content .ProseMirror h3 {
-    margin: 24px 0 12px;
-    font-weight: bold;
-}
-
-.toolbar-select {
-    appearance: none;
-    /* quita el estilo nativo */
-    -webkit-appearance: none;
-    /* para Safari */
-    -moz-appearance: none;
-    /* para Firefox */
-    padding: 6px 12px;
-    border: 1px solid #dfd1e8;
-    border-radius: 6px;
-    background-color: #f9f9f9;
-    font-size: 15px;
-    color: #333333;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23333' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px 8px;
-    padding-right: 32px;
-    /* espacio para la flechita */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23333' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 8px;
 }
 
 .toolbar-select:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .toolbar-select:focus {
-    outline: none;
-    border-color: #aaa;
-    box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.2);
+  outline: none;
+  border-color: #aaa;
+  box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.2);
 }
 
-.editor-toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: #faf9fc;
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    border-bottom: 1px solid #ddd;
-    gap: 8px;
+/* Botones toolbar */
+.toolbar-button {
+  border: none;
+  background-color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
+.toolbar-button:hover {
+  background-color: #f0f0f0;
+}
+
+.toolbar-button.is-active {
+  background-color: #ded1f7;
+  color: #3f2a8d;
+}
+
+/* Acciones a la derecha */
+.toolbar-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.boton-publicar {
+  background: linear-gradient(135deg, rgb(137, 116, 218), rgb(124, 92, 221));
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(119, 100, 195, 0.632);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.boton-publicar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+.boton-publicar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(119, 100, 195, 0.5);
+}
+
+.boton-publicar:hover::after {
+  left: 100%;
+}
+
+.boton-guardar {
+  padding: 8px 12px;
+  font-size: 15px;
+  background-color: #9777ef4e;
+  color: #200061;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boton-guardar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(119, 100, 195, 0.5);
+}
+
+/* =========================
+   CONTENIDO DEL EDITOR
+   (ESTILO "LIBRO")
+========================= */
 .editor-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    background-color: white;
-    max-height: 600px;
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  padding: 16px;
+  background-color: #ffffff;
+
+  /* Importante: que el sticky toolbar funcione bien */
+  max-height: 600px;
 }
 
-.editor-content {
-    scroll-behavior: smooth;
+/* La “hoja” dentro del scroll */
+.editor-content .ProseMirror {
+  /* Hoja centrada */
+  margin: 0 auto;
+
+  width: min(760px, 100%);
+  min-height: 600px;
+
+  /* look de página */
+  background: #fffdf7; /* papel suave (puedes poner #fff si lo quieres blanco) */
+  border-radius: 10px;
+  padding: 44px 56px;
+
+  /* sombra suave tipo libro */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+
+  outline: none;
+  border: none;
+
+  /* Tipografía tipo lectura */
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+
+  /* ✅ Menos interlineado que el tuyo (tenías 1.8) */
+  line-height: 1.15;
+
+  /* “margen de encuadernación” (más a la izquierda) */
+  padding-left: 68px;
+}
+
+/* Párrafos tipo novela */
+.editor-content .ProseMirror p {
+  margin: 0 0 10px 0;
+  text-align: justify;
+
+  /* ✅ Sangría al iniciar */
+  text-indent: 2em;
+}
+
+/* Primer párrafo sin sangría (opcional, muy de libro) */
+.editor-content .ProseMirror p:first-child {
+  text-indent: 0;
+}
+
+/* Títulos sin sangría */
+.editor-content .ProseMirror h1,
+.editor-content .ProseMirror h2,
+.editor-content .ProseMirror h3 {
+  margin: 22px 0 10px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-indent: 0;
+}
+
+/* Listas más compactas */
+.editor-content .ProseMirror ul,
+.editor-content .ProseMirror ol {
+  margin: 10px 0 10px 24px;
+}
+
+.editor-content .ProseMirror li {
+  margin: 4px 0;
 }

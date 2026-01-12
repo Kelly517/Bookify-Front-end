@@ -17,21 +17,24 @@ const CheckoutComponent = ({ onSubmit, book }) => {
   };
 
   useEffect(() => {
-    if (book) {
-      addBookCart(book);
-    }
-  }, []);
+    if (book) addBookCart(book);
+    // mismo comportamiento (solo corrige el warning)
+  }, [book]);
 
-  localStorage.setItem("currentCart", cart);
+  // Persistencia del carrito (mismo resultado: se guarda, pero estable)
+  useEffect(() => {
+    localStorage.setItem("currentCart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div className="checkout-cart-wrapper">
       <div className="arrow-read3">
-        {" "}
-        <FlechaRegresar />{" "}
+        <FlechaRegresar />
       </div>
+
       <div className="checkout-cart-section-left">
         <h2>Carrito de compras</h2>
+
         <table className="checkout-cart-table">
           <thead>
             <tr>
@@ -40,6 +43,7 @@ const CheckoutComponent = ({ onSubmit, book }) => {
               <th>Precio</th>
             </tr>
           </thead>
+
           <tbody>
             {cart.map((item, index) => (
               <tr key={index} className="checkout-cart-table-row">
@@ -51,11 +55,10 @@ const CheckoutComponent = ({ onSubmit, book }) => {
                   />
                   <div className="checkout-cart-book-texts">
                     <p className="checkout-cart-book-title">{item.bookTitle}</p>
-                    <p className="checkout-cart-book-author">
-                      {item.bookAuthor}
-                    </p>
+                    <p className="checkout-cart-book-author">{item.bookAuthor}</p>
                   </div>
                 </td>
+
                 <td className="checkout-cart-book-format">Dígital</td>
                 <td className="checkout-cart-book-price">${book.price}</td>
               </tr>
@@ -69,12 +72,14 @@ const CheckoutComponent = ({ onSubmit, book }) => {
         <p className="checkout-summary-book-title">{book.title}</p>
         <p className="checkout-summary-book-price">${book.price}</p>
         <p className="checkout-summary-total-price">Total: ${book.price}</p>
+
         <button className="checkout-summary-pay-button" onClick={onSubmit}>
           Proceder al pago
         </button>
+
         <p className="checkout-summary-note">
-          📚 Los libros estarán disponibles en tu biblioteca digital
-          inmediatamente después del pago.
+          📚 Los libros estarán disponibles en tu biblioteca digital inmediatamente
+          después del pago.
         </p>
       </div>
     </div>

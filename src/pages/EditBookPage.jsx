@@ -1,172 +1,86 @@
-import React, { useEffect, useState } from "react";
-import BookPageForm from "../components/bookpagecomponents/BookPageForm";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import "../css/editor/editor-book.css";
-import { Window, More } from "../icons/Icons";
-import UploadBookCover from "../components/bookpagecomponents/UploadBookCover";
-import NameChapterModal from "../components/bookpagecomponents/NameChapterModal";
-import axios from "axios";
+import BookPageForm from "../components/bookpagecomponents/BookPageForm";
+import ChapterSidebar from "../components/bookpagecomponents/ChapterSideBar";
+
+import { useBookByIdentifierCode } from "../features/bookPages/hooks/useBookByIdentifierCode";
+import { usePageContent } from "../features/bookPages/hooks/usePageContent";
+import { useInitialPageFromBook } from "../features/bookPages/hooks/useInitialPageFromBook";
+import { pageChapterService } from "../services/pageChapterService";
 
 const EditChapter = () => {
- const { bookIdentifierCode } = useParams();
- const [mostrarContenido, setMostrarContenido] = useState(true);
- const [book, setBook] = useState([]);
- const [getPage, setGetPage] = useState("");
- const [showChapterModal, setShowChaperModal] = useState(null);
- const navigate = useNavigate();
+  const { bookIdentifierCode } = useParams();
+  const navigate = useNavigate();
 
- useEffect(() => {
-   const fetchBook = async () => {
-     try {
-       const books = await axios.get(
-         `http://localhost:8080/api/bookify/book/${bookIdentifierCode}`
-       );
-       const bookData = books.data;
-       setBook(bookData);
+  const [mostrarContenido, setMostrarContenido] = useState(true);
+  const [showChapterModal, setShowChapterModal] = useState(false);
 
-       const firstPage = bookData.bookPageEntity?.[0];
+  const { book } = useBookByIdentifierCode(bookIdentifierCode);
 
-       if (firstPage) {
-         const contentResponse = await axios.get(
-           `http://localhost:8080/api/bookify/content/page/${firstPage.bookPageId}`
-         );
-         const content = contentResponse.data;
+  const { selectedPage, setSelectedPage, selectPage } = usePageContent(null);
 
-         const fullPage = {
-           ...firstPage,
-           pageContent: content,
-         };
+  // Carga el primer capítulo como lo hacías antes
+  useInitialPageFromBook(book, setSelectedPage);
 
-         setGetPage(fullPage);
-       }
-     } catch (error) {
-       console.log("Error: ", error);
-     }
-   };
+  const toggleContenido = () => setMostrarContenido((prev) => !prev);
 
-   fetchBook();
- }, [bookIdentifierCode]);
+  const handleNewChapter = () => setShowChapterModal(true);
 
- const toggleContenido = () => {
-   setMostrarContenido((prev) => !prev);
- };
+  const handleChapterSubmit = async (chapterTitle) => {
+    const token = localStorage.getItem("authToken");
 
- const handleSelectPage = async (page) => {
-   try {
-     const res = await axios.get(
-       `http://localhost:8080/api/bookify/content/page/${page.bookPageId}`
-     );
-     const content = res.data;
-
-     const fullPage = {
-       ...page,
-       pageContent: content,
-     };
-
-     setGetPage(fullPage);
-   } catch (error) {
-     console.log("Error al obtener contenido de capítulo:", error);
-   }
- };
-
- const handleUpdatePage = (updatedContent) => {
-   setGetPage(prevPage => ({
-     ...prevPage,
-     pageContent: updatedContent
-   }));
- };
-
- const handleChapterSubmit = async (chapterTitle) => {
-   const token = localStorage.getItem("authToken");
-
-   try {
-     await axios.post(
-       `http://localhost:8080/api/bookify/page/${bookIdentifierCode}`,
-       {
-         pageTitle: chapterTitle,
-         pageContent: "",
-         bookId: book.bookId,
-       },
-       {
-         headers: {
-           Authorization: `Bearer ${token}`,
-           "Content-Type": "application/json",
-         },
-       }
-     );
-
-     console.count('submit chapter')
-     setShowChaperModal(false);
-     navigate(`/dashboard/write/create-page/${bookIdentifierCode}`, {
-       replace: true,
-       state: {
-        selectedPage: { pageTitle: chapterTitle, pageContent: "" },
+    try {
+      await pageChapterService.createPage(
         bookIdentifierCode,
-      },
-     });
-   } catch (error) {
-     console.log("Error al guardar el capítulo: ", error);
-   }
- };
+        {
+          pageTitle: chapterTitle,
+          pageContent: "",
+          bookId: book?.bookId,
+        },
+        token
+      );
 
- const handleNewChapter = () => {
-   setShowChaperModal(true);
- };
+      setShowChapterModal(false);
 
- return (
-   <div className="content-editor">
-     <div className={`ventana ${mostrarContenido ? "" : "ventana-colapsada"}`}>
-       <div className="edit-book-modal" onClick={toggleContenido}>
-         <h4 >
-           {book.title}
-           <Window  className={`icon-window ${!mostrarContenido ? "pulsar" : ""}`}/>
-         </h4>
-       </div>
+      // Mantengo EXACTO tu comportamiento: navega a create-page
+      navigate(`/dashboard/write/create-page/${bookIdentifierCode}`, {
+        replace: true,
+        state: {
+          selectedPage: { pageTitle: chapterTitle, pageContent: "" },
+          bookIdentifierCode,
+        },
+      });
+    } catch (error) {
+      console.log("Error al guardar el capítulo: ", error);
+    }
+  };
 
-       {mostrarContenido && (
-         <>
-           <UploadBookCover bookIdentifierCode={ bookIdentifierCode } />
-           <div className="capitulos2">
-             <h4>Lista de capítulos</h4>
-             <button className="agg-new-capitulo" onClick={handleNewChapter}>
-               + Agregar nuevo capítulo
-             </button>
-             {showChapterModal && (
-               <NameChapterModal
-                 onSubmit={handleChapterSubmit}
-                 onCancel={() => setShowChaperModal(false)}
-               />
-             )}
-             {book.bookPageEntity?.map((page) => {
-               return (
-                 <div
-                   key={page.bookPageId}
-                   onClick={() => {
-                     handleSelectPage(page);
-                   }}
-                   className="containes-capitulos"
-                 >
-                   <div className="capitulo-creado">
-                     <More className="icon-more" />
-                     <p>{page.pageTitle}</p>
-                   </div>
-                 </div>
-               );
-             })}
-           </div>
-         </>
-       )}
-     </div>
+  return (
+    <div className="content-editor">
+      <ChapterSidebar
+        bookTitle={book?.title}
+        bookPages={book?.bookPageEntity}
+        bookIdentifierCode={bookIdentifierCode}
+        mostrarContenido={mostrarContenido}
+        onToggleContenido={toggleContenido}
+        onSelectPage={selectPage}
+        onNewChapterClick={handleNewChapter}
+        showChapterModal={showChapterModal}
+        onChapterSubmit={handleChapterSubmit}
+        onCloseModal={() => setShowChapterModal(false)}
+      />
 
-     {getPage && (
-       <BookPageForm 
-         mode="edit" 
-         pageData={getPage} 
-         onContentUpdated={handleUpdatePage}
-       />
-     )}
-   </div>
- );
+      {selectedPage && (
+        <BookPageForm
+          mode="edit"
+          pageData={selectedPage}
+          bookIdentifierCode={bookIdentifierCode}
+        />
+      )}
+    </div>
+  );
 };
 
 export default EditChapter;

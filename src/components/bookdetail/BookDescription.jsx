@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../css/BookDetaildesing/Bookdetail.css";
 import { IconoloveVacio, Iconolovelleno } from "../../icons/Icons";
-import { useUserData } from '../profilecomponents/GetUserData';
+import { useUserData } from "../profilecomponents/GetUserData";
+import { loadAuthFromStorage } from "../../storage/authStorage";
 
 const BookDescription = ({ book }) => {
-  const email = localStorage.getItem("email");
-  const { user, loading, error } = useUserData(email);
   const [isFavorited, setIsFavorited] = useState(false);
   const navigate = useNavigate();
-  const isPurchased = user?.purchasedBooks?.some(p => p.bookId === book.bookId);
+
+  const { email } = loadAuthFromStorage();
+  const { user } = useUserData(email);
+
+  const isPurchased = user?.purchasedBooks?.some((p) => p.bookId === book.bookId);
 
   const handleAction = () => {
     if (!isPurchased) {
       navigate(`/dashboard/checkout`, {
         state: {
-          book: book,
+          book,
           bookIdentifierCode: book.bookIdentifierCode,
-          quantity: 1
-        }
+          quantity: 1,
+        },
       });
     } else {
       navigate(`/dashboard/read-book/${book.bookIdentifierCode}`);
     }
   };
 
-
-  const toggleFavorite = () => {
-    setIsFavorited(!isFavorited);
-  };
+  const toggleFavorite = () => setIsFavorited((prev) => !prev);
 
   return (
     <div className="detalle-descripcion">
@@ -38,13 +38,8 @@ const BookDescription = ({ book }) => {
         </button>
 
         <button className="iconolove" onClick={toggleFavorite}>
-          {isFavorited ? (
-            <Iconolovelleno className="heart-fill" />
-          ) : (
-            <IconoloveVacio className="heart-empty" />
-          )}
+          {isFavorited ? <Iconolovelleno className="heart-fill" /> : <IconoloveVacio className="heart-empty" />}
         </button>
-
       </div>
 
       <div className="des">

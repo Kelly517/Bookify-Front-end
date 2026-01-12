@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import RatingStars from './RatingStars.jsx';
+import RatingStars from "./RatingStars.jsx";
 import categoryOptions from "../bookcomponents/categoryOptions.js";
 import "../../css/BookDetaildesing/Bookdetail.css";
+import { loadAuthFromStorage } from "../../storage/authStorage";
 
 const BookHeader = ({ book }) => {
-  const categoryLabel = categoryOptions.find(cat => cat.value === book.category)?.label || book.category;
-  const user = localStorage.getItem("userId");
-  console.log("Books: ", book)
+  const categoryLabel =
+    categoryOptions.find((cat) => cat.value === book.category)?.label || book.category;
+
+  const { userId } = loadAuthFromStorage();
 
   return (
     <div className="contenedor-book-detail">
@@ -17,6 +16,7 @@ const BookHeader = ({ book }) => {
         alt="Portada"
         className="portada-book-detail"
       />
+
       <div className="contenido">
         <h1 className="titulo">{book.title}</h1>
 
@@ -30,7 +30,7 @@ const BookHeader = ({ book }) => {
         <p className="precio">
           Precio:{" "}
           <span className="valor-precio">
-            {book.price === 0 ? (
+            {book.price == null || Number(book.price) === 0 ? (
               <span className="badge-free">Gratis</span>
             ) : (
               <span>${book.price.toLocaleString("es-CO")}</span>
@@ -38,9 +38,9 @@ const BookHeader = ({ book }) => {
           </span>
         </p>
 
-          <div className="book-rating">
-          <RatingStars book={book.bookId} user={user} />
-          </div>
+        <div className="book-rating">
+          <RatingStars book={book.bookId} user={userId} />
+        </div>
       </div>
     </div>
   );
