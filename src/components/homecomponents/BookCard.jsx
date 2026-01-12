@@ -31,20 +31,20 @@ const BookCard = ({
       <div className={`book-card-wrapper-relative ${customClassName}`}>
         {showBotonderecho && (
           <button
-          type="button"
-          className="arrow-button left"
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={!canGoPrev}
-        >
-          <Flechaleft />
-        </button>
+            type="button"
+            className="arrow-button left"
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={!canGoPrev}
+          >
+            <Flechaleft />
+          </button>
         )}
 
         <div className="book-card-scroll-container">
           {currentBooks.map((bookData) => (
             <div
               className="book-card-horizontal"
-              data-testid={`book-card-${bookData.title.replace(/\s+/g, '-')}`}
+              data-testid={`book-card-${bookData.title.replace(/\s+/g, "-")}`}
               key={bookData.bookId}
               onClick={() =>
                 navigate(`/dashboard/book/${bookData.bookIdentifierCode}`)
@@ -58,7 +58,7 @@ const BookCard = ({
 
               <div className="book-info-horizontal">
                 <h3 className="book-title">{bookData.title}</h3>
-                 <p className="autorBookCardHome">  {bookData.author.userName}
+                 <p className="autorBookCardHome" onClick={(e) => handleGoToProfile(e, bookData.author.email)}>  {bookData.author.username}
                  </p> 
                 <div className="book-rating">
                   {showRating && (
@@ -96,13 +96,13 @@ const BookCard = ({
 
         {showBoton && (
           <button
-          type="button"
-          className="arrow-button right"
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={!canGoNext}
-        >
-          <Flecharight />
-        </button>
+            type="button"
+            className="arrow-button right"
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={!canGoNext}
+          >
+            <Flecharight />
+          </button>
         )}
       </div>
 

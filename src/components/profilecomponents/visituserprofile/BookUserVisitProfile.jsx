@@ -1,69 +1,23 @@
-import React, { useState, useEffect }  from "react";
-import axios from "axios";
-import BookCard from "../../homecomponents/BookCard";
-import { useNavigate, useParams } from "react-router-dom";
-import { useUserData } from "../GetUserData";
+import React from "react";
+import { useParams } from "react-router-dom";
+
+import ProfileSpinners from "../../../spinners/ProfileSpinners";
 import { navBarProfileMessages } from "../profileComponentsMessages";
-import "../../../css/profile/getProfile.css";
 
-const BookUserVisitProfile = () => {
+import { useVisitedUser } from "../../../features/profile/hooks/useVisitedUser";
+import { useVisitedUserBooks } from "../../../features/profile/hooks/useVisitedUserBooks";
+import BooksUserVisitProfileView from "../../../features/profile/components/BooksUserVisitProfileView";
+
+export default function BooksUserVisitProfile() {
   const { email } = useParams();
-  const { user, loading, error } = useUserData(email);
-  const [books, setBooks] = useState([]);
+  const { user, loading, error } = useVisitedUser(email);
 
-  useEffect(() => {
-    if (!user || !user.userId) return;
-
-    async function fetchBooks() {
-      try {
-        const bookResponse = await axios.get(
-          `http://localhost:8080/api/bookify/books`
-        );
-        const allBooks = bookResponse.data.content;
-        const filteredBooks = allBooks.filter(
-          (book) => book.author?.userId === user.userId
-        );
-
-        setBooks(filteredBooks);
-      } catch (err) {
-        console.log("Error obteniendo los libros", err);
-      }
-    }
-    fetchBooks();
-  }, [user?.userId]);
+  const userId = user?.userId;
+  const { books, loadingBooks, errorBooks } = useVisitedUserBooks(email);
 
   if (loading) return <p>{navBarProfileMessages.charging}</p>;
   if (error) return <ProfileSpinners />;
   if (!user) return null;
 
-  console.log("user ud", user.userId)
-
-  return (
-    <>
-      <div className="components-container-profile">
-        <div className="book-publishe">
-          <h3>Libros publicados</h3>
-
-          <div className="conte-book-profile">
-            {!books || books.length === 0 ? (
-              <p>No tienes libros publicados aún.\n¡Anímate a publicar tu primer libro!</p>
-            ) : (
-              <div >
-                <BookCard
-                  books={books}
-                  showPrice={false}
-                  showDescription={true}
-                  customClassName="bookcard-read-style"
-                  showDivider={false} 
-                  booksPerPage = {6}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default BookUserVisitProfile;
+  return <BooksUserVisitProfileView books={books} loadingBooks={loadingBooks} errorBooks={errorBooks} />;
+}

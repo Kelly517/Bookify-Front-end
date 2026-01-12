@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import '../../css/editor/image.css';
-import axios from 'axios';
-import { Image, Up } from '../../icons/Icons';
+import React, { useState } from "react";
+import "../../css/editor/image.css";
+import axios from "axios";
+import { Up } from "../../icons/Icons";
 
-const ImageUploader = ({ uploadUrl, title, onSuccess, defaultPreview }) => {
+const ImageUploader = ({
+  uploadUrl,
+  title,
+  onSuccess,
+  defaultPreview,
+
+  // ✅ NUEVO (solo UI)
+  buttonText = "Elegir portada",
+  previewShape = "square", // "square" | "circle"
+}) => {
   const [previewImage, setPreviewImage] = useState(defaultPreview || null);
 
   const handleImageChange = async (e) => {
@@ -11,9 +20,7 @@ const ImageUploader = ({ uploadUrl, title, onSuccess, defaultPreview }) => {
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewImage(reader.result);
-    };
+    reader.onloadend = () => setPreviewImage(reader.result);
     reader.readAsDataURL(file);
 
     const formData = new FormData();
@@ -21,7 +28,7 @@ const ImageUploader = ({ uploadUrl, title, onSuccess, defaultPreview }) => {
 
     try {
       const response = await axios.post(uploadUrl, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       console.log("Imagen subida:", response.data);
@@ -32,11 +39,14 @@ const ImageUploader = ({ uploadUrl, title, onSuccess, defaultPreview }) => {
     }
   };
 
+  const imgClass =
+    previewShape === "circle" ? "upload-image upload-image--circle" : "upload-image";
+
   return (
     <div className="upload-container">
-      <div className="upload-preview">
+      <div className={`upload-preview ${previewShape === "circle" ? "upload-preview--circle" : "upload-preview--square"}`}>
         {previewImage ? (
-          <img src={previewImage} alt="Imagen" className="upload-image" />
+          <img src={previewImage} alt="Imagen" className={imgClass} />
         ) : (
           <span role="img" aria-label="Placeholder"></span>
         )}
@@ -45,16 +55,12 @@ const ImageUploader = ({ uploadUrl, title, onSuccess, defaultPreview }) => {
       <div className="upload-content">
         <h2 className="upload-title">{title}</h2>
         <label className="upload-button">
-          <Up /> Elegir portada
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            hidden
-          />
+          <Up /> {buttonText}
+          <input type="file" accept="image/*" onChange={handleImageChange} hidden />
         </label>
       </div>
     </div>
   );
 };
+
 export default ImageUploader;

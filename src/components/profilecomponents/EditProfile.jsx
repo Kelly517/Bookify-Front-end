@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import ProfilePhotoModalView from "../../features/profile/components/ProfilePhotoModalView";
 import EditProfileView from "../../features/profile/components/EditProfileView";
 import { useEditProfile } from "../../features/profile/hooks/useEditProfile";
 import { getProfilePhotoUrl } from "../../utils/mediaUrls";
@@ -35,7 +35,9 @@ const EditProfile = () => {
     deleting,
   } = useEditProfile();
 
-  const photoUrl = user ? getProfilePhotoUrl(user.userId, user.profilePhoto) : "";
+  const photoUrl = user
+    ? getProfilePhotoUrl(user.userId, user.profilePhoto)
+    : "";
 
   const onCancel = () => navigate("/dashboard/profile");
 
@@ -70,11 +72,19 @@ const EditProfile = () => {
       onShowUploader={() => setShowUploader(true)}
       renderUploader={() =>
         user ? (
-          <ImageUploader
-            title="Profile"
-            uploadUrl={`http://localhost:8080/api/bookify/profile/photo/${user.userId}`}
-            onSuccess={() => window.location.reload()}
-          />
+          <ProfilePhotoModalView
+            title="Actualizar foto de perfil"
+            onClose={() => setShowUploader(false)}
+          >
+            <ImageUploader
+              title="Foto de perfil"
+              buttonText="Elegir foto"
+              previewShape="circle"
+              defaultPreview={photoUrl}
+              uploadUrl={`http://localhost:8080/api/bookify/profile/photo/${user.userId}`}
+              onSuccess={() => window.location.reload()}
+            />
+          </ProfilePhotoModalView>
         ) : null
       }
     />
